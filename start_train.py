@@ -63,7 +63,7 @@ def load_vocab(data):
 
 if __name__ == "__main__":
 
-    DATASET_PATH = '../data_tweets/labeledTrainData.tsv' #t.csv'
+    DATASET_PATH = './data_tweets/t.csv' #t.csv'
     nb_classes = 2
     delete_non_raws = False
 
@@ -79,7 +79,6 @@ if __name__ == "__main__":
     vocab = load_vocab(data)
 
     print(len(vocab))
-    print(vocab)
 
     # Load dataset
     data_tr_cv_ts = load_benchmark(data, vocab)

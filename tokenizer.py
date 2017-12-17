@@ -17,12 +17,12 @@ import re
 
 # Basic patterns.
 RE_NUM = r'[0-9]+'
-RE_WORD = r'[a-zA-Z]+'
+RE_WORD = r'[a-zA-Zа-яА-Я]+'
 RE_WHITESPACE = r'\s+'
 RE_ANY = r'.'
 
 # Combined words such as 'red-haired' or 'CUSTOM_TOKEN'
-RE_COMB = r'[a-zA-Z]+[-_][a-zA-Z]+'
+RE_COMB = r'[a-zA-Zа-яА-Я]+[-_][a-zA-Zа-яА-Я]+'
 
 # English-specific patterns
 RE_CONTRACTIONS = RE_WORD + r'\'' + RE_WORD
@@ -45,14 +45,14 @@ RE_SYMBOL = r'|'.join([re.escape(s) + r'+' for s in SYMBOLS])
 # Hash symbols and at symbols have to be defined separately in order to not
 # clash with hashtags and mentions if there are multiple - i.e.
 # ##hello -> ['#', '#hello'] instead of ['##', 'hello']
-SPECIAL_SYMBOLS = r'|#+(?=#[a-zA-Z0-9_]+)|@+(?=@[a-zA-Z0-9_]+)|#+|@+'
+SPECIAL_SYMBOLS = r'|#+(?=#[a-zA-Zа-яА-Я0-9_]+)|@+(?=@[a-zA-Zа-яА-Я0-9_]+)|#+|@+'
 RE_SYMBOL += SPECIAL_SYMBOLS
 
 RE_ABBREVIATIONS = r'\b(?<!\.)(?:[A-Za-z]\.){2,}'
 
 # Twitter-specific patterns
-RE_HASHTAG = r'#[a-zA-Z0-9_]+'
-RE_MENTION = r'@[a-zA-Z0-9_]+'
+RE_HASHTAG = r'#[a-zA-Zа-яА-Я0-9_]+'
+RE_MENTION = r'@[a-zA-Zа-яА-Я0-9_]+'
 
 RE_URL = r'(?:https?://|www\.)(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
 RE_EMAIL = r'\b[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\b'
@@ -153,3 +153,7 @@ def tokenize(text):
     # Remove empty strings
     result = [t for t in result if t.strip()]
     return result
+
+
+if __name__ == '__main__':
+    print(tokenize('@JKuz8snDhrIamo1 Выздоравливай,солнышко!💕☀️'))

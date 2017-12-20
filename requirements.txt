@@ -37,6 +37,7 @@ protobuf==3.4.0
 pymorphy2==0.8
 pymorphy2-dicts==2.4.393442.3710985
 pyparsing==2.2.0
+pyTelegramBotAPI=3.5.1
 python-dateutil==2.6.1
 pytz==2017.3
 PyYAML==3.12
@@ -46,6 +47,7 @@ scipy==0.19.1
 six==1.11.0
 sklearn==0.0
 smart-open==1.5.3
+telebot==0.0.3
 tensorflow-gpu==1.2.1
 text-unidecode==1.1
 tqdm==4.19.4

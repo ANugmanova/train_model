@@ -79,8 +79,6 @@ def train_model(nb_classes, DATASET_PATH, DATASET_PATH_PRETRAINED = '',
             data = data.dropna()
             data.to_csv(DATASET_PATH_PRETRAINED, sep='\t', index=False)
         data = pd.read_csv(DATASET_PATH_PRETRAINED, sep='\t')
-
-
         vocab = load_vocab(data, vocab)
 
     if delete_non_raws:
@@ -102,9 +100,10 @@ def train_model(nb_classes, DATASET_PATH, DATASET_PATH_PRETRAINED = '',
 
     model, acc = finetune(model, data_tr_cv_ts['texts'], data_tr_cv_ts['labels'], nb_classes,
                           data_tr_cv_ts['batch_size'], method='last',
-                          epoch_size=5000, nb_epochs=1000, verbose=5)  # 'last')
+                          epoch_size=5000, nb_epochs=1, verbose=5)  # 'last')
 
     print('Acc: {}'.format(acc))
+    print(model.predict('тестовое сообщение'))
 
     if save_model:
         model.save_weights("model.hdf5")

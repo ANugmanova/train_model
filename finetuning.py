@@ -16,7 +16,7 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger
 from keras.optimizers import Adam
 from keras.utils.np_utils import to_categorical
 
-from train_model.global_variables import (
+from global_variables import (
     FINETUNING_METHODS,
     FINETUNING_METRICS,
     WEIGHTS_DIR)

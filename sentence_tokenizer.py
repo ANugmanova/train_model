@@ -22,11 +22,11 @@ class SentenceTokenizer():
         """ Needs a dictionary as input for the vocabulary.
         """
 
-        if len(vocabulary) > np.iinfo('uint16').max:
+        if len(vocabulary) > np.iinfo('uint32').max:
             raise ValueError('Dictionary is too big ({} tokens) for the numpy '
                              'datatypes used (max limit={}). Reduce vocabulary'
                              ' or adjust code accordingly!'
-                             .format(len(vocabulary), np.iinfo('uint16').max))
+                             .format(len(vocabulary), np.iinfo('uint32').max))
 
         # Shouldn't be able to modify the given vocabulary
         self.vocabulary = deepcopy(vocabulary)
@@ -76,9 +76,9 @@ class SentenceTokenizer():
                        else len(sentences))
 
         if self.masking_value == 0:
-            tokens = np.zeros((n_sentences, self.fixed_length), dtype='uint16')
+            tokens = np.zeros((n_sentences, self.fixed_length), dtype='uint32')
         else:
-            tokens = (np.ones((n_sentences, self.fixed_length), dtype='uint16')
+            tokens = (np.ones((n_sentences, self.fixed_length), dtype='uint32')
                       * self.masking_value)
 
         if reset_stats:
@@ -208,29 +208,8 @@ class SentenceTokenizer():
             together with spaces.
         """
         # Have to recalculate the mappings in case the vocab was extended.
-        ind_to_word = {ind: word for word, ind in self.vocabulary.iteritems()}
+        ind_to_word = {ind: word for word, ind in self.vocabulary.items()}
 
         sentence_as_list = [ind_to_word[x] for x in sentence_idx]
         cleaned_list = [x for x in sentence_as_list if x != 'CUSTOM_MASK']
         return " ".join(cleaned_list)
-
-
-def coverage(dataset, verbose=False):
-    """ Computes the percentage of words in a given dataset that are unknown.
-
-    # Arguments:
-        dataset: Tokenized dataset to be checked.
-        verbose: Verbosity flag.
-
-    # Returns:
-        Percentage of unknown tokens.
-    """
-    n_total = np.count_nonzero(dataset)
-    n_unknown = np.sum(dataset == 1)
-    coverage = 1.0 - float(n_unknown) / n_total
-
-    if verbose:
-        print("Unknown words: {}".format(n_unknown))
-        print("Total words: {}".format(n_total))
-        print("Coverage: {}".format(coverage))
-    return coverage

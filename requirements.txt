@@ -16,7 +16,7 @@ e==1.4.5
 emoji==0.4.5
 et-xmlfile==1.0.1
 Flask==0.12.2
-Flask-Cors==3.0.3
+Flask-Cors==3.0.9
 gensim==3.0.1
 h5py==2.7.1
 html5lib==0.9999999

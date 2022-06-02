@@ -19,7 +19,7 @@ Flask==0.12.2
 Flask-Cors==3.0.3
 gensim==3.0.1
 h5py==2.7.1
-html5lib==0.9999999
+html5lib==0.99999999
 idna==2.6
 itsdangerous==0.24
 jdcal==1.3

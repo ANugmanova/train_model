@@ -30,7 +30,7 @@ logger==1.4
 Markdown==2.6.9
 MarkupSafe==1.0
 matplotlib==2.1.0
-numpy==1.13.3+mkl
+numpy==1.22.0rc1
 openpyxl==2.4.9
 pandas==0.21.0
 protobuf==3.4.0
